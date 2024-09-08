@@ -366,7 +366,7 @@ namespace FontStashSharp.RichText
 				}
 			}
 
-			_stringBuilder.Clear();
+			_stringBuilder.Length = 0;
 
 			r.StartIndex = r.EndIndex = i;
 
@@ -689,9 +689,15 @@ namespace FontStashSharp.RichText
 							// Simply trim end and add ellipsis
 							var words = new List<string>(text.Split(' '));
 
+							var builder = new StringBuilder();
 							while (words.Count > 0)
 							{
-								text = string.Join(" ", words).TrimEnd();
+								builder.Length = 0;
+								for(var w = 0; w < words.Count; w++) {
+									if (w > 0) builder.Append(' ');
+									builder.Append(words[i]);
+								}
+								text = builder.ToString().TrimEnd();
 								if (!string.IsNullOrEmpty(AutoEllipsisString))
 								{
 									text += AutoEllipsisString;

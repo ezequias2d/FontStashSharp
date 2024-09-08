@@ -2,7 +2,6 @@
 using System.Text;
 using System;
 using FontStashSharp.Interfaces;
-using System.Linq;
 
 #if MONOGAME || FNA
 using Microsoft.Xna.Framework;
@@ -123,7 +122,7 @@ namespace FontStashSharp
 			return new Bounds(minx, miny, maxx, maxy);
 		}
 
-		public Bounds TextBounds(string text, Vector2 position, Vector2? scale = null, 
+		public Bounds TextBounds(string text, Vector2 position, Vector2? scale = null,
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f,
 			FontSystemEffect effect = FontSystemEffect.None, int effectAmount = 0)
 		{
@@ -134,7 +133,7 @@ namespace FontStashSharp
 			return bounds;
 		}
 
-		public Bounds TextBounds(StringBuilder text, Vector2 position, Vector2? scale = null, 
+		public Bounds TextBounds(StringBuilder text, Vector2 position, Vector2? scale = null,
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f,
 			FontSystemEffect effect = FontSystemEffect.None, int effectAmount = 0)
 		{
@@ -145,7 +144,7 @@ namespace FontStashSharp
 			return bounds;
 		}
 
-		private List<Glyph> GetGlyphs(TextSource source, Vector2 position, Vector2 origin, Vector2? sourceScale, 
+		private List<Glyph> GetGlyphs(TextSource source, Vector2 position, Vector2 origin, Vector2? sourceScale,
 			float characterSpacing, float lineSpacing, FontSystemEffect effect, int effectAmount)
 		{
 			List<Glyph> result = new List<Glyph>();
@@ -239,7 +238,10 @@ namespace FontStashSharp
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f)
 		{
 			var glyphs = GetGlyphs(text, position, origin, scale, characterSpacing, lineSpacing);
-			return (from g in glyphs select g.Bounds).ToList();
+			List<Rectangle> rectangles = new List<Rectangle>(glyphs.Count);
+	  	foreach (var g in glyphs)
+			rectangles.Add(g.Bounds);
+	  	return rectangles;
 		}
 
 		[Obsolete("Use GetGlyphs")]
@@ -248,10 +250,13 @@ namespace FontStashSharp
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f)
 		{
 			var glyphs = GetGlyphs(text, position, origin, scale, characterSpacing, lineSpacing);
-			return (from g in glyphs select g.Bounds).ToList();
+			List<Rectangle> rectangles = new List<Rectangle>(glyphs.Count);
+	  	foreach (var g in glyphs)
+			rectangles.Add(g.Bounds);
+	  	return rectangles;
 		}
 
-		public Vector2 MeasureString(string text, Vector2? scale = null, 
+		public Vector2 MeasureString(string text, Vector2? scale = null,
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f,
 			FontSystemEffect effect = FontSystemEffect.None, int effectAmount = 0)
 		{
@@ -259,7 +264,7 @@ namespace FontStashSharp
 			return new Vector2(bounds.X2, bounds.Y2);
 		}
 
-		public Vector2 MeasureString(StringBuilder text, Vector2? scale = null, 
+		public Vector2 MeasureString(StringBuilder text, Vector2? scale = null,
 			float characterSpacing = 0.0f, float lineSpacing = 0.0f,
 			FontSystemEffect effect = FontSystemEffect.None, int effectAmount = 0)
 		{
