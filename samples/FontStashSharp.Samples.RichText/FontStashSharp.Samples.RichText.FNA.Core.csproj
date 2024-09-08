@@ -15,6 +15,10 @@
   </ItemGroup>  
 
   <ItemGroup>
+    <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Assets\**\*.*" LinkBase="Assets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>  

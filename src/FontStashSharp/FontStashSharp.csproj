@@ -5,6 +5,7 @@
     <AssemblyName>FontStashSharp</AssemblyName>
     <Description>Platform-Agnostic Version of FontStashSharp</Description>
     <DefineConstants>$(DefineConstants);PLATFORM_AGNOSTIC</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -12,10 +13,7 @@
   </PropertyGroup>   
   
   <ItemGroup>
-    <PackageReference Include="FontStashSharp.Base" Version="$(FontStashSharpBaseVersion)" />
-    <PackageReference Include="FontStashSharp.Rasterizers.StbTrueTypeSharp" Version="$(FontStashSharpBaseVersion)" />
-    <PackageReference Include="Cyotek.Drawing.BitmapFont" Version="$(CyotekDrawingBitmapFontVersion)" />
-    <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+    <PackageReference Include="StbTrueTypeSharp" Version="1.26.12" />
   </ItemGroup>
 </Project>

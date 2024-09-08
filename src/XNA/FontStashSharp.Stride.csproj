@@ -6,6 +6,7 @@
     <Description>FontStashSharp for Stride</Description>
     <DefineConstants>STBSHARP_INTERNAL;STRIDE</DefineConstants>
     <OutputPath>bin\Stride\$(Configuration)</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -13,11 +14,7 @@
   </PropertyGroup>  
   
   <ItemGroup>
-    <PackageReference Include="FontStashSharp.Base" Version="$(FontStashSharpBaseVersion)" />
-    <PackageReference Include="FontStashSharp.Rasterizers.StbTrueTypeSharp" Version="$(FontStashSharpBaseVersion)" />
     <PackageReference Include="Stride.Graphics" Version="$(StrideVersion)" />
-    <PackageReference Include="Cyotek.Drawing.BitmapFont" Version="$(CyotekDrawingBitmapFontVersion)" />
-    <PackageReference Include="StbImageSharp" Version="$(StbImageSharpVersion)" />
   </ItemGroup>  
 
   <ItemGroup>
